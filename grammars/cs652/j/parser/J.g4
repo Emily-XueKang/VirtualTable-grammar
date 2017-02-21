@@ -16,7 +16,7 @@ mainblock
     ;
 mainstatement
     :   'if' parExpression statement ('else' statement)?
-    |   'for' '(' forControl ')' mainstatement
+    |   'for' '(' forControl ')' statement
     |   'while' parExpression statement
     |   'do' statement 'while' parExpression ';'
     |   'return' expression? ';'
@@ -204,7 +204,7 @@ IntegerLiteral
     ;
 
 FloatingPointLiteral
-    :   IntegerLiteral '.' IntegerLiteral
+    :   IntegerLiteral '.' [0-9]+
     ;
 
 StringLiteral
