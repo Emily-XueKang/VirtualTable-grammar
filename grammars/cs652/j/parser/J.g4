@@ -15,17 +15,17 @@ mainblock
     |    typeDeclaration
     ;
 mainstatement
-    :   'if' parExpression mainstatement ('else' mainstatement)?
+    :   'if' parExpression statement ('else' statement)?
     |   'for' '(' forControl ')' mainstatement
-    |   'while' parExpression mainstatement
-    |   'do' mainstatement 'while' parExpression ';'
+    |   'while' parExpression statement
+    |   'do' statement 'while' parExpression ';'
     |   'return' expression? ';'
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
     |   ';'
     |   statementExpression ';'
-    |   Identifier ':' mainstatement
+    |   Identifier ':' statement
     |   printstatement ';'
     ;
 classDeclaration
