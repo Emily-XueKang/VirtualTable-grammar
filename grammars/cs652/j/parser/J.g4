@@ -6,9 +6,28 @@ file
     ;
 
 main
-    :    block
+    :    mainblock*
     ;
 
+mainblock
+    :    localVariableDeclarationStatement
+    |    mainstatement
+    |    typeDeclaration
+    ;
+mainstatement
+    :   'if' parExpression mainstatement ('else' mainstatement)?
+    |   'for' '(' forControl ')' mainstatement
+    |   'while' parExpression mainstatement
+    |   'do' mainstatement 'while' parExpression ';'
+    |   'return' expression? ';'
+    |   'throw' expression ';'
+    |   'break' Identifier? ';'
+    |   'continue' Identifier? ';'
+    |   ';'
+    |   statementExpression ';'
+    |   Identifier ':' mainstatement
+    |   printstatement ';'
+    ;
 classDeclaration
     :    'class' Identifier /*typeParameters?*/
          ('extends' typeType)?
@@ -362,16 +381,16 @@ statement
     |   printstatement ';'
     ;
 printstatement
-    :   'printf("' printcontent '"'  (',' printparameter)? ')'
+    :   'printf(' StringLiteral (',' printargs)? ')'
     ;
-printcontent
-    :   literal '\n'
-    |   printtype '\n'
-    ;
-printtype
-    :   ('%d')? ('%f')?
-    ;
-printparameter
+//printcontent
+//    :   literal '\n'
+//    |   printtype '\n'
+//    ;
+//printtype
+//    :   ('%d')? ('%f')?
+//    ;
+printargs
     :   expression
     ;
 
