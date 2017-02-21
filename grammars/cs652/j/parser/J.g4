@@ -224,9 +224,8 @@ StringCharacter
 fragment
 EscapeSequence
     :   '\\' [btnfr"'\\]
-    |   '\"'
+//    |   '\"'
     ;
-
 
 arrayInitializer
     :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
