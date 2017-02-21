@@ -199,14 +199,14 @@ literal
     |   StringLiteral
     |   'null'
     ;
-//fragment
+
 IntegerLiteral
     :   '0'
     |   [1-9][0-9]*
     ;
-//fragment
+
 FloatingPointLiteral
-    :   IntegerLiteral '.' IntegerLiteral?
+    :   IntegerLiteral '.' IntegerLiteral
     ;
 
 StringLiteral
@@ -224,6 +224,7 @@ StringCharacter
 fragment
 EscapeSequence
     :   '\\' [btnfr"'\\]
+    |   '\"'
     ;
 
 
@@ -381,7 +382,7 @@ statement
     |   printstatement ';'
     ;
 printstatement
-    :   'printf(' StringLiteral (',' printargs)? ')'
+    :   'printf(' StringLiteral (',' printargs)*? ')'
     ;
 //printcontent
 //    :   literal '\n'
