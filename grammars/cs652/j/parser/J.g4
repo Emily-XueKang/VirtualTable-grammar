@@ -34,7 +34,9 @@ classDeclaration
     //('implements' typeList)? //no interface implementation in this grammar for now
          classBody
     ;
-
+Identifier
+    :   [a-zA-Z_][a-zA-Z_0-9]*
+    ;
 classBody
     :   '{' classBodyDeclaration* '}'
     ;
@@ -54,10 +56,6 @@ memberDeclaration
     |   classDeclaration
     |   enumDeclaration
     ;
-/*interfaceDeclaration
-    :   'interface' Identifier typeParameters? ('extends' typeList)? interfaceBody
-    ;
-*/
 enumDeclaration
     :   ENUM Identifier ('implements' typeList)?
         '{' enumConstants? ','? enumBodyDeclarations? '}'
@@ -326,24 +324,6 @@ annotationMethodRest
 annotationConstantRest
     :   variableDeclarators
     ;
-/*Interface body
-interfaceBody
-    :   '{' interfaceBodyDeclaration* '}'
-    ;
-interfaceBodyDeclaration
-    :   modifier* interfaceMemberDeclaration
-    |   ';'
-    ;
-interfaceMemberDeclaration
-    :   constDeclaration
-    |   interfaceMethodDeclaration
-    |   genericInterfaceMethodDeclaration
-    |   interfaceDeclaration
-    |   annotationTypeDeclaration
-    |   classDeclaration
-    |   enumDeclaration
-    ;
-*/
 
 defaultValue
     :   'default' elementValue
@@ -362,15 +342,10 @@ classOrInterfaceModifier
 
 statement
     :   block
-    //|   ASSERT expression (':' expression)? ';'
     |   'if' parExpression statement ('else' statement)?
     |   'for' '(' forControl ')' statement
     |   'while' parExpression statement
     |   'do' statement 'while' parExpression ';'
-//    |   'try' block (catchClause+ finallyBlock? | finallyBlock)
-//    |   'try' resourceSpecification block catchClause* finallyBlock?
-//    |   'switch' parExpression '{' switchBlockStatementGroup* switchLabel* '}'
-//    |   'synchronized' parExpression block
     |   'return' expression? ';'
     |   'throw' expression ';'
     |   'break' Identifier? ';'
@@ -383,17 +358,9 @@ statement
 printstatement
     :   'printf(' StringLiteral (',' printargs)*? ')'
     ;
-//printcontent
-//    :   literal '\n'
-//    |   printtype '\n'
-//    ;
-//printtype
-//    :   ('%d')? ('%f')?
-//    ;
 printargs
     :   expression
     ;
-
 
 
 parExpression
@@ -516,9 +483,6 @@ primitiveType
     ;
 
 
-Identifier
-    :   [a-zA-Z_][a-zA-Z_0-9]*
-    ;
 
 WS  :  [ \t\r\n\u000C]+ -> skip
     ;
