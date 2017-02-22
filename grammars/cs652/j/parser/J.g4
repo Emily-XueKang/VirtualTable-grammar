@@ -52,25 +52,9 @@ memberDeclaration
    // |   constructorDeclaration
    // |   genericConstructorDeclaration
    // |   interfaceDeclaration
-    |   annotationTypeDeclaration
+   // |   annotationTypeDeclaration
     |   classDeclaration
-    |   enumDeclaration
-    ;
-enumDeclaration
-    :   ENUM Identifier ('implements' typeList)?
-        '{' enumConstants? ','? enumBodyDeclarations? '}'
-    ;
-
-enumConstants
-    :   enumConstant (',' enumConstant)*
-    ;
-
-enumConstant
-    :   annotation* Identifier arguments? classBody?
-    ;
-
-enumBodyDeclarations
-    :   ';' classBodyDeclaration*
+   // |   enumDeclaration
     ;
 
 annotation
@@ -167,7 +151,6 @@ variableInitializer
     |   expression
     ;
 
-
 primary
     :   '(' expression ')'
     |   'this'
@@ -222,7 +205,6 @@ StringCharacter
 fragment
 EscapeSequence
     :   '\\' [btnfr"'\\]
-//    |   '\"'
     ;
 
 arrayInitializer
@@ -276,9 +258,9 @@ blockStatement
 
 typeDeclaration
     :   classOrInterfaceModifier* classDeclaration
-    |   classOrInterfaceModifier* enumDeclaration
+//    |   classOrInterfaceModifier* enumDeclaration
 //    |   classOrInterfaceModifier* interfaceDeclaration
-    |   classOrInterfaceModifier* annotationTypeDeclaration
+//    |   classOrInterfaceModifier* annotationTypeDeclaration
     |   ';'
     ;
 modifier
@@ -291,7 +273,7 @@ modifier
     ;
 
 // Annotation type
-annotationTypeDeclaration
+/*annotationTypeDeclaration
     :   '@' 'interface' Identifier annotationTypeBody
     ;
 
@@ -308,7 +290,7 @@ annotationTypeElementRest
     :   typeType annotationMethodOrConstantRest ';'
     |   classDeclaration ';'?
 //    |   interfaceDeclaration ';'?
-    |   enumDeclaration ';'?
+//    |   enumDeclaration ';'?
     |   annotationTypeDeclaration ';'?
     ;
 
@@ -324,7 +306,7 @@ annotationMethodRest
 annotationConstantRest
     :   variableDeclarators
     ;
-
+*/
 defaultValue
     :   'default' elementValue
     ;
@@ -481,8 +463,6 @@ primitiveType
     |   'float'
     |   'double'
     ;
-
-
 
 WS  :  [ \t\r\n\u000C]+ -> skip
     ;
